@@ -10,23 +10,23 @@
 
 // Async - starts now finishes later
 
-const getTodos = resource => {
-  return new Promise((resolve, reject) => {
-    const request = new XMLHttpRequest();
+// const getTodos = resource => {
+//   return new Promise((resolve, reject) => {
+//     const request = new XMLHttpRequest();
 
-    request.addEventListener('readystatechange', () => {
-      if (request.readyState === 4 && request.status === 200) {
-        const data = JSON.parse(request.responseText);
-        resolve(data);
-      } else if (request.readyState === 4) {
-        reject('error getting resource');
-      }
-    });
+//     request.addEventListener('readystatechange', () => {
+//       if (request.readyState === 4 && request.status === 200) {
+//         const data = JSON.parse(request.responseText);
+//         resolve(data);
+//       } else if (request.readyState === 4) {
+//         reject('error getting resource');
+//       }
+//     });
 
-    request.open('GET', resource);
-    request.send();
-  });
-};
+//     request.open('GET', resource);
+//     request.send();
+//   });
+// };
 
 // getTodos('todos/luigi.json')
 //   .then(data => {
@@ -59,14 +59,26 @@ const getTodos = resource => {
 // console.log(3);
 // console.log(4);
 
-fetch('todos/harry.json')
-  .then(response => {
-    console.log('resolved', response);
-    return response.json();
-  })
-  .then(data => {
-    console.log(data);
-  })
-  .catch(err => {
-    console.log('rejected', err);
-  });
+// async & await
+const getTodos = async () => {
+  const response = await fetch('todos/harry.json');
+  const data = await response.json();
+
+  return data;
+};
+
+getTodos()
+  .then(data => console.log('resolved', data))
+  .catch(err => console.log('rejected', err.message));
+
+// fetch('todos/harry.json')
+//   .then(response => {
+//     console.log('resolved', response);
+//     return response.json();
+//   })
+//   .then(data => {
+//     console.log(data);
+//   })
+//   .catch(err => {
+//     console.log('rejected', err);
+//   });
