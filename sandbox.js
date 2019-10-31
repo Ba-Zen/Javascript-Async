@@ -28,21 +28,21 @@ const getTodos = resource => {
   });
 };
 
-getTodos('todos/luigi.json')
-  .then(data => {
-    console.log('promise 1 resolved', data);
-    return getTodos('todos/mario.json');
-  })
-  .then(data => {
-    console.log('promise 2 resolved', data);
-    return getTodos('todos/harry.json');
-  })
-  .then(data => {
-    console.log('promise 3 resolved', data);
-  })
-  .catch(err => {
-    console.log('promise rejected', err);
-  });
+// getTodos('todos/luigi.json')
+//   .then(data => {
+//     console.log('promise 1 resolved', data);
+//     return getTodos('todos/mario.json');
+//   })
+//   .then(data => {
+//     console.log('promise 2 resolved', data);
+//     return getTodos('todos/harry.json');
+//   })
+//   .then(data => {
+//     console.log('promise 3 resolved', data);
+//   })
+//   .catch(err => {
+//     console.log('promise rejected', err);
+//   });
 
 // console.log(1);
 // console.log(2);
@@ -58,3 +58,15 @@ getTodos('todos/luigi.json')
 
 // console.log(3);
 // console.log(4);
+
+fetch('todos/harry.json')
+  .then(response => {
+    console.log('resolved', response);
+    return response.json();
+  })
+  .then(data => {
+    console.log(data);
+  })
+  .catch(err => {
+    console.log('rejected', err);
+  });
